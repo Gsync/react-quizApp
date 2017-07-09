@@ -21,6 +21,12 @@
         }
     });
 
+    var data = [
+        {
+            
+        }
+    ]
+
 
 ReactDOM.render(
     <Quiz books={['The Lord of the Rinds', 'The Great Gutsby']} />, document.getElementById('app')
