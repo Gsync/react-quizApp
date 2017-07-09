@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Gsync/react-quizApp/issues"
   },
-  "homepage": "https://github.com/Gsync/react-quizApp#readme"
+  "homepage": "https://github.com/Gsync/react-quizApp#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
