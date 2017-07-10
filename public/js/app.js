@@ -5,10 +5,7 @@
         },
 
         getInitialState: function () {
-            return {
-                author: this.props.data[0],
-                books: this.props.data[0].books
-            };
+            return this.props.data.selectGame();
         },
 
         render: function () {
@@ -74,6 +71,22 @@
         }
     ];
 
+    data.selectGame = function () {
+        var books = _.shuffle(this.reduce(function (p, c, i) {
+            return p.concat(c.books);
+        }, [])).slice(0,4);
+
+        var answer = books[_.random(books.length-1)];
+
+        return {
+            books: books,
+            author: _.find(this, function(author) {
+                return author.books.some(function (title) {
+                    return title === answer;
+                });
+            })
+        };
+    };
 
 ReactDOM.render(
     <Quiz data={data} />, document.getElementById('app')
