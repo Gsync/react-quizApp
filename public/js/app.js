@@ -23,9 +23,36 @@
 
     var data = [
         {
-            
+            name: 'Mark Twain',
+            imageUrl: 'images/authors/mark.jpg',
+            books: ['The Adventures of Huckleberry Finn']
+        },
+        {
+            name: 'Joseph Conrad',
+            imageUrl: 'images/authors/joseph.png',
+            books: ['Heart of Darkness']
+        },
+        {
+            name: 'J. K. Rowling',
+            imageUrl: 'images/authors/rowling.jpg',
+            books: ['Harry Potter']
+        },
+        {
+            name: 'Stephen King',
+            imageUrl: 'images/authors/stephen.jpg',
+            books: ['The Shining', 'IT']
+        },
+        {
+            name: 'Charles Dickens',
+            imageUrl: 'images/authors/dickens.jpg',
+            books: ['David Copperfield', 'A Tale of two Cities']
+        },
+        {
+            name: 'Willium Shakespeare',
+            imageUrl: 'images/authors/shakespeare.jpg',
+            books: ['Romeo and Juliet', 'Hamlet', 'Macbeth']
         }
-    ]
+    ];
 
 
 ReactDOM.render(
