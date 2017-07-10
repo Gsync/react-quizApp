@@ -1,14 +1,34 @@
 
     var Quiz = React.createClass({
         propTypes: {
-            books: React.PropTypes.array.isRequired
+            data: React.PropTypes.array.isRequired
         },
+
+        getInitialState: function () {
+            return {
+                author: this.props.data[0],
+                books: this.props.data[0].books
+            };
+        },
+
         render: function () {
-            return <div>
-                {this.props.books.map(function(b) {
-                    return <Book title={b} />
-                })}
-            </div>;
+            return (
+            <div>
+                <div className="row">
+                    <div className="col-md-4">
+                        <img src={this.state.author.imageUrl} className="authorimage col-md-3" />
+                    </div>
+                    <div className="col-md-7">
+                        {this.state.books.map(function (b) {
+                            return <Book title={b} />;
+                        }, this)}
+                    </div>
+                    <div className="col-md-1">
+                    
+                    </div>
+                </div>
+            </div>
+            );
         }
     });
 
@@ -17,7 +37,7 @@
             title: React.PropTypes.string.isRequired
         },
         render: function () {
-            return <div><h4>{this.props.title}</h4></div>;
+            return <div className="answer"><h4>{this.props.title}</h4></div>;
         }
     });
 
@@ -56,5 +76,5 @@
 
 
 ReactDOM.render(
-    <Quiz books={['The Lord of the Rinds', 'The Great Gutsby']} />, document.getElementById('app')
+    <Quiz data={data} />, document.getElementById('app')
 );
