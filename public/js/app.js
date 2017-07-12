@@ -22,6 +22,9 @@
         handleContinue: function () {
             this.setState(this.getInitialState());
         },
+        handleAddGame: function () {
+            routie('add');
+        },
 
         render: function () {
             return (
@@ -45,6 +48,11 @@
                         </div>
                     </div>) : <span />
                 }
+                <div className="row">
+                    <div className="col-md-12">
+                        <input onClick={this.handleAddGame} id="addGameButton" type="button" value="Add Game" className="btn " />
+                    </div>
+                </div>
             </div>
             );
         }
@@ -62,6 +70,19 @@
                 <h4>{this.props.title}</h4>
             </div>;
         }
+    });
+
+    var AddGameForm = React.createClass({
+        render: function () {
+            return (
+            <div className="row">
+                <div className="col-md-12">
+                    <h1>Add Game</h1>
+                </div>
+            </div>
+            );
+        }
+        
     });
 
     var data = [
@@ -122,9 +143,14 @@
 
 routie({
     '': function () {
-        ReactDOM.render(
-    <Quiz data={data} />, document.getElementById('app')
-);
+            ReactDOM.render(
+        <Quiz data={data} />, document.getElementById('app')
+        );
+    },
+    'add': function () {
+            ReactDOM.render(
+        <AddGameForm />, document.getElementById('app')
+        );
     }
 });
 
