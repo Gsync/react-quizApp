@@ -120,6 +120,11 @@
         };
     };
 
-ReactDOM.render(
+routie({
+    '': function () {
+        ReactDOM.render(
     <Quiz data={data} />, document.getElementById('app')
 );
+    }
+});
+
