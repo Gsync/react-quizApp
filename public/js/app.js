@@ -73,6 +73,14 @@
     });
 
     var AddGameForm = React.createClass({
+        propTypes: {
+            onGameFormSubmitted: React.PropTypes.func.isRequired
+        },
+        handleSubmit: function () {
+            this.props.onGameFormSubmitted(getRefs(this));
+            return false;
+        },
+
         render: function () {
             return (
             <div className="row">
@@ -136,7 +144,7 @@
         }
     ];
 
-    data.selectGame = function () {
+    var selectGame = function () {
         var books = _.shuffle(this.reduce(function (p, c, i) {
             return p.concat(c.books);
         }, [])).slice(0,4);
@@ -159,6 +167,8 @@
         };
     };
 
+    data.selectGame = selectGame;
+
 routie({
     '': function () {
             ReactDOM.render(
@@ -167,8 +177,24 @@ routie({
     },
     'add': function () {
             ReactDOM.render(
-        <AddGameForm />, document.getElementById('app')
+        <AddGameForm onGameFormSubmitted={handleAddFormSubmitted} />, document.getElementById('app')
         );
     }
 });
 
+function handleAddFormSubmitted(data) {
+    var quizData = [{
+        imageUrl: data.imageUrl,
+        books: [data.answer1, data.answer2, data.answer3, data.answer4]
+    }];
+    quizData.selectGame = selectGame;
+    ReactDOM.render(<Quiz data={quizData} />, document.getElementById('app'));
+}
+
+function getRefs(component) {
+    var result = {};
+    Object.keys(component.refs).forEach(function (refName) {
+        result[refName] = component.refs[refName].getDOMNode().value;
+    });
+    return result;
+}
